@@ -46,7 +46,6 @@ COPY config "$GRAYLOG_DIR/config"
 COPY graylog.sh "$GRAYLOG_DIR/bin/graylog"
 
 RUN set -ex \
-  && mkdir -p ./data/{journal,log,plugin,config,contentpacks} \
   && chown -R graylog:graylog "$GRAYLOG_DIR"
 
 COPY docker-entrypoint.sh /
