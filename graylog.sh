@@ -14,7 +14,7 @@ fi
 # take variables from environment if set
 GRAYLOG_DIR=${GRAYLOG_DIR:=/opt/graylog}
 GRAYLOG_SERVER_JAR=${GRAYLOG_SERVER_JAR:=graylog.jar}
-GRAYLOG_CONF=${GRAYLOG_CONF:=/opt/graylog/config/graylog.conf}
+GRAYLOG_CONF=${GRAYLOG_CONF:=$GRAYLOG_DIR/config/graylog.conf}
 LOG4J=${LOG4J:=}
 DEFAULT_JAVA_OPTS="-Djava.library.path=${GRAYLOG_DIR}/lib/sigar -Xms1g -Xmx1g -XX:NewRatio=1 -server -XX:+ResizeTLAB -XX:+UseConcMarkSweepGC -XX:+CMSConcurrentMTEnabled -XX:+CMSClassUnloadingEnabled -XX:+UseParNewGC -XX:-OmitStackTraceInFastThrow"
 
