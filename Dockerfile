@@ -22,7 +22,7 @@ ENV GRAYLOG_DIR /opt/graylog
 ENV PATH $GRAYLOG_DIR/bin:$PATH
 ENV GRAYLOG_VERSION $VERSION
 
-# fix jave in alpin
+# fix java in alpine
 COPY etc /etc
 
 # hadolint ignore=DL3018
