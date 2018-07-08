@@ -24,7 +24,7 @@ LABEL \
 
 # hadolint ignore=DL3018
 RUN set -ex \
-  && apk --no-cache add bash su-exec
+  && apk --no-cache add bash curl su-exec
 
 RUN set -ex \
   && addgroup -S graylog \
