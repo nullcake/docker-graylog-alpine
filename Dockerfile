@@ -4,6 +4,11 @@ FROM openjdk:8-jre-alpine
 ARG VCS_REF
 ARG VERSION
 
+ENV GRAYLOG_URL_BASE https://packages.graylog2.org/releases/graylog
+ENV GRAYLOG_DIR /opt/graylog
+ENV PATH $GRAYLOG_DIR/bin:$PATH
+ENV GRAYLOG_VERSION $VERSION
+
 LABEL \ 
       maintainer="Jochen Schalanda <jochen+docker@schalanda.name>" \
       org.label-schema.name="Graylog Alpine Docker Image" \
@@ -17,22 +22,17 @@ LABEL \
       com.microscaling.docker.dockerfile="/Dockerfile" \
       com.microscaling.license="MIT"
 
-ENV GRAYLOG_URL_BASE https://packages.graylog2.org/releases/graylog
-ENV GRAYLOG_DIR /opt/graylog
-ENV PATH $GRAYLOG_DIR/bin:$PATH
-ENV GRAYLOG_VERSION $VERSION
-
-# fix java in alpine
-COPY etc /etc
+# hadolint ignore=DL3018
+RUN set -ex \
+  && apk --no-cache add bash su-exec
 
 # hadolint ignore=DL3018
 RUN set -ex \
-  && apk update && apk --no-cache add libcap bash \
-  && setcap 'cap_net_bind_service=+ep' "$JAVA_HOME/bin/java"
+  && apk --no-cache add libcap && setcap 'cap_net_bind_service=+ep' "$JAVA_HOME/bin/java"
 
 RUN set -ex \
-  && addgroup -g 1000 graylog \
-  && adduser -D -S -g '' -u 1000 -G graylog -h "$GRAYLOG_DIR" graylog
+  && addgroup -S graylog \
+  && adduser -D -S -g '' -G graylog -h "$GRAYLOG_DIR" graylog
 
 WORKDIR $GRAYLOG_DIR
 RUN \
@@ -49,6 +49,9 @@ RUN set -ex \
   && chown -R graylog:graylog "$GRAYLOG_DIR"
 
 COPY docker-entrypoint.sh /
+
+# fix java in alpine
+#COPY etc /etc
 
 EXPOSE 9000
 USER graylog
