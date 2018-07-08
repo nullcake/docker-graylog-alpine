@@ -1,11 +1,21 @@
 sudo: required
 services:
-  - docker
+- docker
 install:
-  - make docker_build
+- make docker_build
 script:
-  - echo ${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH}
-  - echo ${TRAVIS_TAG}
-  - make test
+- echo ${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH}
+- echo ${TRAVIS_TAG}
+- make test
 after_success:
-  - make docker_trigger
+- make docker_trigger
+deploy:
+  provider: releases
+  api_key:
+    secure: jPtnUQfZKZycksl3rrYSpyWCXog/fXminH/tfNDN0I8EO3eizwBDjgKqAW91D0BidJOt60cPFAA97vSxbv1H+r+2ZTQH5rjDIS9T8WBRl0otAIP60mFwmkE6YVeY12FnFYOWMoUNFtu6lk7SM3CQGyumxBi3wpKgVrT2MHdm+ulIbEQcv7V3tMgHvUvUCmAuUCwCcf5ajRSrOkCNB+Lesx9NfBVtjh3Mty45egH6r0RX7zN7h6UxmcVV1hK3VD/XLxlkhtgVoDeWarrqFQYanGRX5EEDKkX4VxsgdnLY1HoCjwXivbNRmdgto+8//ug+RhL0fIeHntDB5+FZlFshfCyc9K6JRSoTx6FqDZjScq4HR9cJMqjoPNGHTnivBFAbdPJ0tGuWkqpurA8HKpQZaBN+m3pFPlCyd5uoWKLRpYf+QuvdfNejFBWun8BnENFkqKFY5FFErKzfsD+eJrIf2DR42tiDMTrTdskb+IDnAWU97CzN2pLF7Fn3gRTTAAYCo97jt2qAzr6wVm2qu1rwAJaOOIQCplj6Xn8yO8jdlaelPFNg8P6c+DTIj9RpPwVXfBFolsFetoxLF7DdlKPZ/FtZJwLrnqhskiQb4B6nGRTRohCzAa1KQdYLS3nplkwcW5/VvOhp8oJ4JYfUwTpCfs3hduu2Dhua4u2QXn8wQAQ=
+  file: 
+    - VERSION
+  skip_cleanup: true
+  on:
+    repo: nullcake/docker-graylog-alpine
+    tags: true
