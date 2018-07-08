@@ -1,14 +1,15 @@
 # Graylog
 
-[![Docker Stars](https://img.shields.io/docker/stars/joschi/graylog-alpine.svg)][hub]
-[![Docker Pulls](https://img.shields.io/docker/pulls/joschi/graylog-alpine.svg)][hub]
-[![Image Size](https://images.microbadger.com/badges/image/joschi/graylog-alpine.svg)][microbadger]
-[![Image Version](https://images.microbadger.com/badges/version/joschi/graylog-alpine.svg)][microbadger]
-[![Image License](https://images.microbadger.com/badges/license/joschi/graylog-alpine.svg)][microbadger]
+[![Build Status](https://travis-ci.org/nullcake/docker-graylog-alpine.svg?branch=master)](https://travis-ci.org/nullcake/docker-graylog-alpine)
+[![Docker Stars](https://img.shields.io/docker/stars/nullcake/graylog-alpine.svg)][hub]
+[![Docker Pulls](https://img.shields.io/docker/pulls/nullcake/graylog-alpine.svg)][hub]
+[![Image Size](https://images.microbadger.com/badges/image/nullcake/graylog-alpine.svg)][microbadger]
+[![Image Version](https://images.microbadger.com/badges/version/nullcake/graylog-alpine.svg)][microbadger]
+[![Image License](https://images.microbadger.com/badges/license/nullcake/graylog-alpine.svg)][microbadger]
 
 
-[hub]: https://hub.docker.com/r/joschi/graylog-alpine/
-[microbadger]: https://microbadger.com/images/joschi/graylog-alpine
+[hub]: https://hub.docker.com/r/nullcake/graylog-alpine/
+[microbadger]: https://microbadger.com/images/nullcake/graylog-alpine
 
 ## What is Graylog?
 
