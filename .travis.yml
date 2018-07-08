@@ -5,3 +5,4 @@ install:
   - make docker_build
 script:
   - make test
+  - make docker_trigger
