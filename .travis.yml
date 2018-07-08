@@ -5,7 +5,6 @@ install:
 - make docker_build
 script:
 - echo ${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH}
-- echo ${TRAVIS_TAG}
 - make test
 after_success:
 - make docker_trigger
