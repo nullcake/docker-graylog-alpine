@@ -47,7 +47,7 @@ RUN set -ex \
 COPY docker-entrypoint.sh /
 
 # fix java in alpine
-#COPY etc /etc
+COPY etc /etc
 
 EXPOSE 9000
 
