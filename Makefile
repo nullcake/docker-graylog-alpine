@@ -12,4 +12,7 @@ linter:
 integration_test:
 	@test/integration_test.sh
 
+docker_trigger:
+	@test/docker_trigger.sh
+
 test: linter integration_test
