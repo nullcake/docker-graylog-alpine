@@ -10,12 +10,12 @@ ENV PATH $GRAYLOG_DIR/bin:$PATH
 ENV GRAYLOG_VERSION $VERSION
 
 LABEL \ 
-      maintainer="Jochen Schalanda <jochen+docker@schalanda.name>" \
+      maintainer="nullcake <40649178+nullcake@users.noreply.github.com>" \
       org.label-schema.name="Graylog Alpine Docker Image" \
-      org.label-schema.description="Official Graylog Docker image based on Alpine Linux" \
+      org.label-schema.description="Graylog Docker image based on Alpine Linux" \
       org.label-schema.url="https://www.graylog.org/" \
       org.label-schema.vcs-ref=$VCS_REF \
-      org.label-schema.vcs-url="https://github.com/joschi/docker-graylog-alpine" \
+      org.label-schema.vcs-url="https://github.com/nullcake/docker-graylog-alpine" \
       org.label-schema.vendor="Graylog, Inc." \
       org.label-schema.version=$VERSION \
       org.label-schema.schema-version="1.0" \
@@ -25,10 +25,6 @@ LABEL \
 # hadolint ignore=DL3018
 RUN set -ex \
   && apk --no-cache add bash su-exec
-
-# hadolint ignore=DL3018
-RUN set -ex \
-  && apk --no-cache add libcap && setcap 'cap_net_bind_service=+ep' "$JAVA_HOME/bin/java"
 
 RUN set -ex \
   && addgroup -S graylog \
@@ -54,6 +50,10 @@ COPY docker-entrypoint.sh /
 #COPY etc /etc
 
 EXPOSE 9000
+
+# hadolint ignore=DL3018
+RUN set -ex \
+  && apk --no-cache add libcap && setcap 'cap_net_bind_service=+ep' "$JAVA_HOME/bin/java"
 USER graylog
 
 VOLUME $GRAYLOG_DIR/data
